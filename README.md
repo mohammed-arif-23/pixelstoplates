@@ -415,30 +415,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 📞 Support
 
-Need help? Here's how to get support:
-
-- 📖 **Documentation**: Check our [docs](docs/) first
-- 🐛 **Issues**: [Report a bug](https://github.com/yourusername/pixelstoplates/issues)
-- 💬 **Discussions**: [Join the conversation](https://github.com/yourusername/pixelstoplates/discussions)
-- 📧 **Email**: support@pixelstoplates.com
-
----
-
-## 📊 Project Status
-
-![GitHub stars](https://img.shields.io/github/stars/yourusername/pixelstoplates?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/pixelstoplates?style=social)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/pixelstoplates)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/pixelstoplates)
-![GitHub license](https://img.shields.io/github/license/yourusername/pixelstoplates)
-
----
 
 <div align="center">
 
-**Made with ❤️ by the Pixelstoplates Team**
+**Made with ❤️ by the Mohammed Arif**
 
 [⬆ Back to top](#-pixelstoplates)
 
