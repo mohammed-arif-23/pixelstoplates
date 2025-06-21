@@ -9,7 +9,7 @@
 
 **A powerful Django-based web application for intelligent image processing and license plate recognition using AI/ML technologies.**
 
-[🚀 Quick Start](#quick-start) • [📋 Requirements](#requirements) • [🔧 Installation](#installation) • [🐛 Troubleshooting](#troubleshooting) • [📚 Documentation](#documentation)
+[🚀 Quick Start](#-quick-start) • [📋 Requirements](#-requirements) • [🔧 Installation](#-installation) • [🐛 Troubleshooting](#-troubleshooting) • [📚 Documentation](#-documentation)
 
 </div>
 
@@ -442,6 +442,4 @@ Need help? Here's how to get support:
 
 [⬆ Back to top](#-pixelstoplates)
 
-</div> #   p i x e l s t o p l a t e s  
- #   p i x e l s t o p l a t e s  
- 
+</div>
