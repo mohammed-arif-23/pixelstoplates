@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pixels to Plates</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'main/style.css' %}"
+    />
+  </head>
+  <body class="poppins-regular" style="background: transparent">
+    <div class="top-section">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+
+          flex-direction: column;
+        "
+      >
+        <h2 style="margin: 0">Pixels to Plates</h2>
+
+        <i class="poppins-italic"
+          >~ We turn food photos into instant recipes.</i
+        >
+      </div>
+    </div>
+    <div class="main_content">
+      <div class="image-upload-area">
+        <div class="image_form">
+          <form
+            method="post"
+            enctype="multipart/form-data"
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              gap: 1em;
+            "
+          >
+            <img
+              src="data:image/png;base64,{{uploaded_image}}"
+              alt=""
+              id="up-image"
+            />
+            {% csrf_token %}
+            <div
+              class="upload_button"
+              style="display: flex; align-items: center; gap: 1em"
+            >
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                id="id_image"
+                onchange="document.getElementById('up-image').src = window.URL.createObjectURL(this.files[0])"
+              />
+              Select Image
+            </div>
+            <button class="sub" type="submit">Generate Recipe</button>
+          </form>
+        </div>
+      </div>
+      {% if recipe_list_to_return %}
+      <center style="margin-top: 1.5em" class="poppins-italic">
+        <h6>Here are some possible matches, (might not be 100% accurate) :</h6>
+      </center>
+      <div class="results-display-area">
+        {% for x in recipe_list_to_return %}
+        <script></script>
+
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="sub1"
+          style="--color: #4a7766"
+          data-bs-toggle="modal"
+          data-bs-target="#{{x.0|cut:' '}}"
+        >
+          {{x.0}}
+        </button>
+
+        <!-- Modal -->
+        <div
+          class="modal fade modal-xl"
+          id="{{x.0|cut:' ' }}"
+          tabindex="-1"
+          style="backdrop-filter: blur(5px)"
+          aria-labelledby="{{x.0|cut:' ' }}"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+          >
+            <div class="modal-content" style="background: white">
+              <div class="modal-header text-center">
+                <h1
+                  class="modal-title fs-5"
+                  style="color: black"
+                  id="exampleModalLabel"
+                >
+                  {{x.0}}
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p><b>Cooking Time:</b> {{x.2}}</p>
+                <p><b>Ingredients Required :</b> {{x.3|linebreaks}}</p>
+                <p>
+                  <b>Cooking Procedure :</b> <br />
+                  {{x.4}}
+                </p>
+              </div>
+              <div style="justify-content: center" class="modal-footer">
+                <p>{{x.1}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+
+      {% if similar_recipe_list %}
+      <center>
+        <h6
+          class="extra_results"
+          style="width: fit-content; margin-top: 1em"
+          class="poppins-italic"
+        >
+          Some least recognized matches :
+        </h6>
+      </center>
+      <div class="results-display-area1" id="" style="display: flex">
+        {% for x in similar_recipe_list %}
+        <button
+          type="button"
+          class="sub1"
+          style="--color: #4a7766"
+          data-bs-toggle="modal"
+          data-bs-target="#{{x.0|cut:' '}}"
+        >
+          {{x.0}}
+        </button>
+        <br /><br />
+
+        <div
+          class="modal fade modal-xl"
+          id="{{x.0|cut:' ' }}"
+          tabindex="-1"
+          style="backdrop-filter: blur(5px)"
+          aria-labelledby="{{x.0|cut:' ' }}"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+          >
+            <div class="modal-content" style="background: white">
+              <div class="modal-header">
+                <h1
+                  class="modal-title fs-5"
+                  style="color: black"
+                  id="exampleModalLabel"
+                >
+                  {{x.0}}
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p><b>Cooking Time:</b> {{x.2}}</p>
+                <p><b>Ingredients Required :</b> {{x.3|linebreaks}}</p>
+                <p>
+                  <b>Cooking Procedure :</b>
+                  {{x.4}}
+                </p>
+              </div>
+              <div style="justify-content: center" class="modal-footer">
+                <p>{{x.1}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+    </div>
+
+    <script>
+      function display_more() {
+        console.log("Loading more");
+        var x = document.getElementById("extra_results");
+        if (x.style.display === "none") {
+          x.style.display = "flex";
+        } else {
+          x.style.display = "none";
+        }
+      }
+      function load_demo_image(image_link) {
+        var frm = document.getElementById("up-image");
+        frm.src = image_link;
+      }
+    </script>
+  </body>
+</html>
